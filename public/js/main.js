@@ -538,9 +538,7 @@ function show_experiment_learning() {
             const bufferElement = document.getElementById('learningBufferVid');
             buffer_video(
                 bufferElement,
-                STIM_PATH + secondVideo.file,
-                () => console.warn(`Failed to buffer initial learning: ${secondVideo.file}`),
-                () => console.log(`Buffered initial learning: ${secondVideo.file}`)
+                STIM_PATH + secondVideo.file
             );
         }
     }
@@ -593,9 +591,7 @@ function renderTrialScreen(phase, last, thisTrial, nextTrial, stimPath) {
             const bufferElement = document.getElementById('learningBufferVid');
             buffer_video(
                 bufferElement,
-                nextVideoPath,
-                () => console.warn(`Failed to buffer learning: ${nextTrial.file}`),
-                () => console.log(`Buffered learning: ${nextTrial.file}`)
+                nextVideoPath
             );
         }
 
@@ -632,9 +628,7 @@ function renderTrialScreen(phase, last, thisTrial, nextTrial, stimPath) {
             const bufferElement = document.getElementById('reviewBufferVid');
             buffer_video(
                 bufferElement,
-                nextVideoPath,
-                () => console.warn(`Failed to buffer review: ${nextTrial.file}`),
-                () => console.log(`Buffered review: ${nextTrial.file}`)
+                nextVideoPath
             );
         }
 
@@ -672,9 +666,7 @@ function renderTrialScreen(phase, last, thisTrial, nextTrial, stimPath) {
             const bufferElement = document.getElementById('testingBufferVid');
             buffer_video(
                 bufferElement,
-                nextVideoPath,
-                () => console.warn(`Failed to buffer testing: ${nextTrial.file}`),
-                () => console.log(`Buffered testing: ${nextTrial.file}`)
+                nextVideoPath
             );
         }
 
@@ -809,9 +801,7 @@ function endFunc(originalPhase) {
                 const bufferElement = document.getElementById('testingBufferVid');
                 buffer_video(
                     bufferElement,
-                    STIM_PATH + firstTestingVideo.file,
-                    () => console.warn(`Failed to buffer first testing: ${firstTestingVideo.file}`),
-                    () => console.log(`Buffered first testing: ${firstTestingVideo.file}`)
+                    STIM_PATH + firstTestingVideo.file
                 );
             }
         }
