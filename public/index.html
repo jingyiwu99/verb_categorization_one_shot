@@ -76,7 +76,7 @@
 <!--======== PRACTICE LEARNING ========-->
 <div class = 'page-box' id="practiceLearningBox" style="display: none;">
     <p class="progress-bar" id="practiceLearningProgress"></p>
-    <p class="guidelines" id="practiceLearningGuideline">Look carefully at each image. Then click "Next."</p>
+    <p class="guidelines" id="practiceLearningGuideline">Look carefully at this image. It is one example from a category.</p>
     <div class="show-area">
         <img id="practiceLearningImg" src="" alt="Practice Learning Image" style="max-width: 600px; display: block; margin: 20px auto;">
     </div>
@@ -86,7 +86,7 @@
 <!--======== PRACTICE TESTING ========-->
 <div class = 'page-box' id="practiceTestingBox" style="display: none;">
     <p class="progress-bar" id="practiceTestingProgress"></p>
-    <p class="guidelines" id="practiceTestingGuideline">Does this image belong to the same group as the first five images?</p>
+    <p class="guidelines" id="practiceTestingGuideline">Does this image belong to the same category as the first image?</p>
     <div class="show-area">
         <img id="practiceTestingImg" src="" alt="Practice Testing Image" style="max-width: 600px; display: block; margin: 20px auto;">
     </div>
@@ -104,15 +104,17 @@
     </video>
     <button class="button" id="expLearningNextBtn" style="display: none;">Next</button>
 </div>
-<!--======== EXPERIMENT REVIEW ========-->
-<div class = 'page-box' id="expReviewBox" style="display: none;">
-    <p class="progress-bar" id="expReviewProgress"></p>
-    <p class="guidelines" id="expReviewGuideline">Click the video to play</p>
-    <video class="vid" muted id="expReviewVid">
-        <source type="video/mp4">
-    </video>
-    <button class="button" id="expReviewNextBtn" style="display: none;">Next</button>
-</div>
+
+<!--&lt;!&ndash;======== EXPERIMENT REVIEW ========&ndash;&gt;-->
+<!--<div class = 'page-box' id="expReviewBox" style="display: none;">-->
+<!--    <p class="progress-bar" id="expReviewProgress"></p>-->
+<!--    <p class="guidelines" id="expReviewGuideline">Click the video to play</p>-->
+<!--    <video class="vid" muted id="expReviewVid">-->
+<!--        <source type="video/mp4">-->
+<!--    </video>-->
+<!--    <button class="button" id="expReviewNextBtn" style="display: none;">Next</button>-->
+<!--</div>-->
+
 <!--======== EXPERIMENT TESTING ========-->
 <div class = 'page-box' id="expTestingBox" style="display: none;">
     <p class="progress-bar" id="expTestingProgress"></p>
@@ -151,7 +153,7 @@
     </div>
 
     <div class='question'>
-        <p class='bold'>What criteria did you use to categorize the actions? What shared characteristics or patterns did you perceive?</p>
+        <p class='bold'>What criteria did you use to categorize the videos? What shared characteristics or patterns did you perceive?</p>
         <p class='small-dim'>You will receive payment regardless of what your answer is here. Please be honest for science! Thanks!</p>
         <textarea id='strategy'></textarea>
         <p class='warning' id='strategy-warning'>Please answer this question to complete the experiment. Thank you!</p>

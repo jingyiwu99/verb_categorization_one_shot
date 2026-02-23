@@ -23,14 +23,16 @@ const COMPLETION_URL = 'https://app.prolific.com/submissions/complete?cc=CDAFVRN
 
 // stimuli
 const STIM_PATH = 'media/';
-const PRACTICE_LEARNING_LIST = [
-    'practice_learning_cat.jpg', 'practice_learning_cat2.jpg', 'practice_learning_panda.jpg',
-    'practice_learning_panda2.jpg', 'practice_learning_horse.jpg', 'practice_learning_horse2.jpg',];
+const PRACTICE_LEARNING_LIST = ['practice_learning_cat.jpg'];
 const PRACTICE_TESTING_LIST = [
     { file: "practice_testing_tiger.jpg", correct: "yes" },
+    { file: "practice_testing_tiger2.jpg", correct: "yes" },
     { file: "practice_testing_butterfly.jpg", correct: "no" },
+    { file: "practice_testing_butterfly2.jpeg", correct: "no" },
     { file: "practice_testing_chicken.jpg", correct: "no" },
-    { file: "practice_testing_fish.jpg", correct: "no" }
+    { file: "practice_testing_chicken2.jpeg", correct: "no" },
+    { file: "practice_testing_fish.jpg", correct: "no" },
+    { file: "practice_testing_fish2.jpeg", correct: "no" },
 ];
 
 const EXPERIMENT_VIDEOS = {
@@ -98,9 +100,9 @@ const INTERTRIAL_INTERVAL = 0.5;
 const INSTR_IMG_LIST = ['maximize_window.png'];
 const ALL_IMG_LIST = PRACTICE_LEARNING_LIST.concat(PRACTICE_TESTING_LIST).concat(INSTR_IMG_LIST);
 
-PracticeLearningTrials = 6
-PracticeTestingTrials = 4
-ExpLearningTrials = 6
+PracticeLearningTrials = 1
+PracticeTestingTrials = 8
+ExpLearningTrials = 1
 ExpTestingNumber = 17
 
 
@@ -124,10 +126,10 @@ $(document).ready(function() {
     subj = new Subject(subj_options);
     subj.id = subj.getID(ID_GET_VARIABLE_NAME);
     console.log(subj.id);
-    // if (!subj.id) {
-    //     subj.id = 'testuser';
-    //     subj.validID = true;
-    // }// if part is for testing on local server, needed to be removed later
+    if (!subj.id) {
+        subj.id = 'testuser';
+        subj.validID = true;
+    }// if part is for testing on local server, needed to be removed later
 
     subj.saveVisit();
     if (subj.phone) {
@@ -308,30 +310,28 @@ INSTRUCTIONS[1] =  [show_maximize_image, enter_fullscreen, "For this experiment 
 INSTRUCTIONS[2] = [hide_instr_img, show_no_music_image, "Please also turn off any music you are playing. Music is known to affect this kind of studies, and it will make your data unusable."];
 INSTRUCTIONS[3] = [hide_instr_img, show_consent, "You can press SPACE to start. Please focus after you start. (Don\'t switch to other windows or tabs!)"];
 INSTRUCTIONS[4] = [false, false, "We'll show you some instructions in the next few pages.<br /><br />Please read carefully, and avoid using the refresh or back buttons."];
-INSTRUCTIONS[5] = [false, false, "Your task is to first watch "+ ExpLearningTrials +" actions from the same category.<br /><br />Then, you will watch a new set of actions and decide whether each one belongs to the same category as the first "+ ExpLearningTrials +" actions."];
-INSTRUCTIONS[6] = [false, false, "The whole experiment will take around 20 minutes.<br /><br />To help you get familiar with the task, you'll first complete a short practice round."];
+INSTRUCTIONS[5] = [false, false, "Your task is to first watch "+ ExpLearningTrials +" action from a category.<br /><br />Then, you will watch a new set of actions and decide whether each one belongs to the same category as the first action."];
+INSTRUCTIONS[6] = [false, false, "The whole experiment will take around 10 minutes.<br /><br />To help you get familiar with the task, you'll first complete a short practice round."];
 //practice phase
-INSTRUCTIONS[7] = [false, false, "During the practice, you will see " + PracticeLearningTrials +" images, shown one at a time."];
-INSTRUCTIONS[8] = [false, false, "Try to figure out what they have in common.<br /><br />This will help you finish the categorization task later."]
+INSTRUCTIONS[7] = [false, false, "During the practice, you will see " + PracticeLearningTrials +" image first."];
+INSTRUCTIONS[8] = [false, false, "This image is one example from a category."]
 INSTRUCTIONS[9] = [show_practice_learning, false, ""];
-INSTRUCTIONS[10] = [false, false, "Then, you will see some new images, also one at a time."];
-INSTRUCTIONS[11] = [false, false, "Click \"Yes\" if you think the picture belongs to the same category.<br /><br />Click \"No\" if you think it does not."]
+INSTRUCTIONS[10] = [false, false, "Then, you will see some new images, one at a time."];
+INSTRUCTIONS[11] = [false, false, "Click \"Yes\" if you think the picture belongs to the same category as the first image.<br /><br />Click \"No\" if you think it does not."]
 INSTRUCTIONS[12] = [show_practice_testing, false, ""];
 INSTRUCTIONS[13] = [false, false, "Oops! You didn't categorize the practice images correctly.<br /><br />Let's review them again to make sure you've got the idea."];
 INSTRUCTIONS[14] = [false, false, "Well done! You understand the categorization task."];
 INSTRUCTIONS[15] = [false, false, "Remember: The category from the practice is just for learning.<br /><br />It has no relevance to the actual experiment."];
 // Main Experiment
-INSTRUCTIONS[16] = [false, false, "The real experiment  consists of three sessions."];
-INSTRUCTIONS[17] = [false, false, "In the first session, you will watch "+ ExpLearningTrials +" actions that belong to the same category."];
+INSTRUCTIONS[16] = [false, false, "The real experiment  consists of two sessions."];
+INSTRUCTIONS[17] = [false, false, "In the first session, you will watch "+ ExpLearningTrials +" video showing a person performing an action."];
 INSTRUCTIONS[18] = [false, false, "Click the video to play it, and click \"Next\" to continue.<br /><br />You can play each video up to three times."];
-INSTRUCTIONS[19] = [false, false, "Pay attention to the commonness of these actions &mdash; this will help your categorization later."];
-INSTRUCTIONS[20] = [false, false, "Now, let's begin by watching "+ ExpLearningTrials +" actions."];
+INSTRUCTIONS[19] = [false, false, "This video is one example from a category.<br /><br />You will use this example to generalize to other videos within the same category."];
+INSTRUCTIONS[20] = [false, false, "Now, let's begin by watching the first video."];
 INSTRUCTIONS[21] = [show_experiment_learning, false, ""];
-INSTRUCTIONS[22] = [false, false, "In the second session, you\'ll watch some new actions.<br /><br />But you don’t need to make any judgments."];
-INSTRUCTIONS[23] = [false, false, "This part is simply to help you get familiar with the types of actions you\'ll see in the actual categorization task.<br /><br />Each video can be played only once."];
-INSTRUCTIONS[24] = [show_experiment_review, false, ""];
-INSTRUCTIONS[25] = [false, false, "In the third session, you will watch " + ExpTestingNumber + " trials.<br /><br />Also, each video can be played up to three times."];
-INSTRUCTIONS[26] = [show_experiment_testing, false, ""];
+INSTRUCTIONS[22] = [false, false, "In the second session, you will watch " + ExpTestingNumber + " trials.<br /><br />Also, each video can be played up to three times."];
+INSTRUCTIONS[23] = [false, false, "You need to decide whether each new video belongs to the same category as the first video you just saw."];
+INSTRUCTIONS[24] = [show_experiment_testing, false, ""];
 
 
 
@@ -546,27 +546,28 @@ function show_experiment_learning() {
     ExperimentTasks.run();
     $("#instr-box").hide();
     $("#expLearningBox").show();       // show learning phase container
-    $("#expReviewBox").hide();
+    // $("#expReviewBox").hide();
     $("#expTestingBox").hide();
 }
 
-function show_experiment_review() {
-    // Hide instruction box and other experiment boxes
-    $("#instr-box").hide();
-    $("#expLearningBox").hide();
-    $("#expTestingBox").hide();
-
-    // Show review box
-    $("#expReviewBox").show();
-
-    // The Task class should already be in 'review' phase at this point
-    // Just call run() to start the first review trial
-    ExperimentTasks.run();
-}
+// function show_experiment_review() {
+//     // Hide instruction box and other experiment boxes
+//     $("#instr-box").hide();
+//     $("#expLearningBox").hide();
+//     $("#expTestingBox").hide();
+//
+//     // Show review box
+//     $("#expReviewBox").show();
+//
+//     // The Task class should already be in 'review' phase at this point
+//     // Just call run() to start the first review trial
+//     ExperimentTasks.run();
+// }
 
 function show_experiment_testing() {
     $("#instr-box").hide();
-    $("#expLearningBox, #expReviewBox").hide();
+    // $("#expLearningBox, #expReviewBox").hide();
+    $("#expLearningBox").hide();
     ExperimentTasks.run();
 }
 
@@ -578,96 +579,45 @@ function renderTrialScreen(phase, last, thisTrial, nextTrial, stimPath) {
         $("#expLearningVid").attr("src", videoPath);
 
         $("#expLearningBox").show();
-        $("#expReviewBox, #expTestingBox").hide();
+        $("#expTestingBox").hide();
 
         // Reset play count
         const $vid = $("#expLearningVid");
         $vid.data("playCount", 0);
-        $vid[0].load();  // reload new video
-
-        // 🎯 BUFFER NEXT VIDEO IN LEARNING PHASE
-        if (nextTrial) {
-            const nextVideoPath = stimPath + nextTrial.file;
-            const bufferElement = document.getElementById('learningBufferVid');
-            buffer_video(
-                bufferElement,
-                nextVideoPath
-            );
-        }
+        $vid[0].load();
 
         // Set up click + end handlers
         $vid.off("click").on("click", handleVideoClick);
         $vid.off("ended").on("ended", handleVideoEnded);
 
-        $("#expLearningNextBtn").hide(); // hidden until video ends
+        $("#expLearningNextBtn").hide();
         $("#expLearningNextBtn").off("click").on("click", function () {
             ExperimentTasks.end("NA");
         });
 
-        const current = ExperimentTasks.trialNum;  // 1-based
+        const current = ExperimentTasks.trialNum;
         const total = ExperimentTasks.totalLearningTrials;
         $("#expLearningProgress").text(`${current} / ${total}`);
     }
 
-    // For REVIEW phase (same structure as learning)
-    else if (phase === "review") {
-        const videoPath = stimPath + thisTrial.file;
-        $("#expReviewVid").attr("src", videoPath);
-
-        $("#expReviewBox").show();
-        $("#expLearningBox, #expTestingBox").hide();
-
-        // Reset play count
-        const $vid = $("#expReviewVid");
-        $vid.data("playCount", 0);
-        $vid[0].load();  // reload new video
-
-        // 🎯 BUFFER NEXT VIDEO IN REVIEW PHASE
-        if (nextTrial) {
-            const nextVideoPath = stimPath + nextTrial.file;
-            const bufferElement = document.getElementById('reviewBufferVid');
-            buffer_video(
-                bufferElement,
-                nextVideoPath
-            );
-        }
-
-        // Set up click + end handlers
-        $vid.off("click").on("click", handleReviewVideoClick);
-        $vid.off("ended").on("ended", handleVideoEnded);
-
-        $("#expReviewNextBtn").hide(); // hidden until video ends
-        $("#expReviewNextBtn").off("click").on("click", function () {
-            ExperimentTasks.end("NA");
-        });
-
-        // Calculate progress for review phase
-        const current = ExperimentTasks.trialNum - ExperimentTasks.totalLearningTrials;
-        const total = ExperimentTasks.totalReviewTrials;
-        $("#expReviewProgress").text(`${current} / ${total}`);
-    }
-
-    // For TESTING phase (same structure as learning, but with response buttons)
+    // For TESTING phase
     else if (phase === "testing") {
         const videoPath = stimPath + thisTrial.file;
         $("#expTestingVid").attr("src", videoPath);
 
         $("#expTestingBox").show();
-        $("#expLearningBox, #expReviewBox").hide();
+        $("#expLearningBox").hide();
 
         // Reset play count
         const $vid = $("#expTestingVid");
         $vid.data("playCount", 0);
-        $vid[0].load();  // reload new video
+        $vid[0].load();
 
         // 🎯 BUFFER NEXT VIDEO IN TESTING PHASE
         if (nextTrial) {
             const nextVideoPath = stimPath + nextTrial.file;
             const bufferElement = document.getElementById('testingBufferVid');
-            buffer_video(
-                bufferElement,
-                nextVideoPath
-            );
+            buffer_video(bufferElement, nextVideoPath);
         }
 
         // Make sure video doesn't autoplay
@@ -692,7 +642,7 @@ function renderTrialScreen(phase, last, thisTrial, nextTrial, stimPath) {
         });
 
         // Calculate progress for testing phase
-        const current = ExperimentTasks.trialNum - ExperimentTasks.totalLearningTrials - ExperimentTasks.totalReviewTrials;
+        const current = ExperimentTasks.trialNum - ExperimentTasks.totalLearningTrials;
         const total = ExperimentTasks.totalTestingTrials;
         $("#expTestingProgress").text(`${current} / ${total}`);
     }
@@ -753,7 +703,7 @@ function handleVideoEnded() {
         if (count >= 1) {
             $(".button-pair").show();
             $("#expYesBtn, #expNoBtn").fadeIn().prop("disabled", false).removeClass("inactive");
-            $("#expTestingGuideline").text("Does this action belong to the same group as the first session?");
+            $("#expTestingGuideline").text("Does this video belong to the same category as the video in the first session?");
 
             // Fix: Use ExperimentTasks instead of undefined 'test'
             if (ExperimentTasks.thisTrial) {
@@ -818,53 +768,3 @@ function endFunc(originalPhase) {
         show_debrief();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function rating() {
-//     $('#test-img').show();
-//     $('.rating-button').mouseup(
-//         function(event) {
-//             $('.rating-button').unbind('mouseup');
-//             task.inView = check_fully_in_view($('#test-img'));
-//             $('#test-img').hide();
-//             var target = $(event.target).closest('.rating-button');
-//             task.end(target.attr('id'));
-//         }
-//     );
-// }
-//
-// function end_task() {
-//     subj.detectVisibilityEnd();
-//     $('#task-box').hide();
-//     $('#questions-box').show();
-//     task.save();
-// }
-
-// var task_options = {
-//     titles: TASK_TITLES,
-//     // pracTrialN: RATING_PRACTICE_TRIAL_N,
-//     // trialN: RATING_TRIAL_N,
-//     savingScript: SAVING_SCRIPT,
-//     dataFile: RATING_FILE,
-//     stimPath: STIM_PATH,
-//     savingDir: SAVING_DIR,
-//     // trialList: RATING_IMG_LIST,
-//     // pracList: RATING_PRACTICE_LIST,
-//     intertrialInterval: INTERTRIAL_INTERVAL,
-//     updateFunc: task_update,
-//     trialFunc: rating,
-//     endExptFunc: end_task,
-//     progressInfo: true
-// }
