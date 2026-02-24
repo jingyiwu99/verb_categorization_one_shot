@@ -28,11 +28,11 @@ const PRACTICE_TESTING_LIST = [
     { file: "practice_testing_tiger.jpg", correct: "yes" },
     { file: "practice_testing_tiger2.jpg", correct: "yes" },
     { file: "practice_testing_butterfly.jpg", correct: "no" },
-    { file: "practice_testing_butterfly2.jpeg", correct: "no" },
+    { file: "practice_testing_butterfly2.jpg", correct: "no" },
     { file: "practice_testing_chicken.jpg", correct: "no" },
-    { file: "practice_testing_chicken2.jpeg", correct: "no" },
+    { file: "practice_testing_chicken2.jpg", correct: "no" },
     { file: "practice_testing_fish.jpg", correct: "no" },
-    { file: "practice_testing_fish2.jpeg", correct: "no" },
+    { file: "practice_testing_fish2.jpg", correct: "no" },
 ];
 
 const EXPERIMENT_VIDEOS = {
@@ -314,7 +314,7 @@ INSTRUCTIONS[5] = [false, false, "Your task is to first watch "+ ExpLearningTria
 INSTRUCTIONS[6] = [false, false, "The whole experiment will take around 10 minutes.<br /><br />To help you get familiar with the task, you'll first complete a short practice round."];
 //practice phase
 INSTRUCTIONS[7] = [false, false, "During the practice, you will see " + PracticeLearningTrials +" image first."];
-INSTRUCTIONS[8] = [false, false, "This image is one example from a category."]
+INSTRUCTIONS[8] = [false, false, "This image is one example from a category.<br /><br />This exact image will not appear again during the later categorization task."]
 INSTRUCTIONS[9] = [show_practice_learning, false, ""];
 INSTRUCTIONS[10] = [false, false, "Then, you will see some new images, one at a time."];
 INSTRUCTIONS[11] = [false, false, "Click \"Yes\" if you think the picture belongs to the same category as the first image.<br /><br />Click \"No\" if you think it does not."]
@@ -326,12 +326,13 @@ INSTRUCTIONS[15] = [false, false, "Remember: The category from the practice is j
 INSTRUCTIONS[16] = [false, false, "The real experiment  consists of two sessions."];
 INSTRUCTIONS[17] = [false, false, "In the first session, you will watch "+ ExpLearningTrials +" video showing a person performing an action."];
 INSTRUCTIONS[18] = [false, false, "Click the video to play it, and click \"Next\" to continue.<br /><br />You can play each video up to three times."];
-INSTRUCTIONS[19] = [false, false, "This video is one example from a category.<br /><br />You will use this example to generalize to other videos within the same category."];
-INSTRUCTIONS[20] = [false, false, "Now, let's begin by watching the first video."];
-INSTRUCTIONS[21] = [show_experiment_learning, false, ""];
-INSTRUCTIONS[22] = [false, false, "In the second session, you will watch " + ExpTestingNumber + " trials.<br /><br />Also, each video can be played up to three times."];
-INSTRUCTIONS[23] = [false, false, "You need to decide whether each new video belongs to the same category as the first video you just saw."];
-INSTRUCTIONS[24] = [show_experiment_testing, false, ""];
+INSTRUCTIONS[19] = [false, false, "This video is one example from a category.<br /><br />Please pay attention to what kind of event it represents."];
+INSTRUCTIONS[20] = [false, false, "This exact video will not appear again during the second session."];
+INSTRUCTIONS[21] = [false, false, "Now, let's begin by watching the first video."];
+INSTRUCTIONS[22] = [show_experiment_learning, false, ""];
+INSTRUCTIONS[23] = [false, false, "In the second session, you will watch " + ExpTestingNumber + " trials.<br /><br />Also, each video can be played up to three times."];
+INSTRUCTIONS[24] = [false, false, "You need to decide whether each new video belongs to the same category as the first video you just saw."];
+INSTRUCTIONS[25] = [show_experiment_testing, false, ""];
 
 
 
