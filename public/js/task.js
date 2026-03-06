@@ -115,32 +115,122 @@ class Task {
     // }
 
 
-    // Class 2 Trials
+    // // Class 2 Trials
+    // buildTrials() {
+    //     const allClasses = Object.keys(EXPERIMENT_VIDEOS);
+    //     const class2Verbs = Object.keys(EXPERIMENT_VIDEOS.class2);
+    
+    //     // 1. Learning Phase: 1 verb from target class, 1 video
+    //     const learningVerbs = shuffle_array(class2Verbs).slice(0, 1);
+    //     const learningVerb = learningVerbs[0];
+    //     const vid = shuffle_array(EXPERIMENT_VIDEOS.class2[learningVerb])[0];
+    //     this.usedVideos.add(vid);
+    //     this.learningList.push({ phase: 'learning', verb: learningVerb, file: vid });
+    //     this.totalLearningTrials = 1;
+    
+    //     // 2. Testing Phase
+    //     // 2.1 Positive: 2 verbs from class2, 2 videos each (not used)
+    //     const remainingPosVerbs = class2Verbs.filter(v => !learningVerbs.includes(v));
+    //     const posTestVerbs = shuffle_array(remainingPosVerbs).slice(0, 2);
+    //     for (let verb of posTestVerbs) {
+    //         const available = EXPERIMENT_VIDEOS.class2[verb].filter(v => !this.usedVideos.has(v));
+    //         const selected = shuffle_array(available).slice(0, 2);
+    //         selected.forEach(v => this.usedVideos.add(v));
+    //         this.testingList.push(...selected.map(file => ({ phase: 'testing', verb, file, label: 'positive' })));
+    //     }
+    
+    //     // 2.2 Negative: pick 2 verbs × 2 videos from each of class1, class3, class4
+    //     for (let className of ['class1', 'class3', 'class4']) {
+    //         const verbs = Object.keys(EXPERIMENT_VIDEOS[className]);
+    //         const selectedVerbs = shuffle_array(verbs).slice(0, 2);
+    //         for (let verb of selectedVerbs) {
+    //             const available = EXPERIMENT_VIDEOS[className][verb].filter(v => !this.usedVideos.has(v));
+    //             const selected = shuffle_array(available).slice(0, 2);
+    //             selected.forEach(v => this.usedVideos.add(v));
+    //             this.testingList.push(...selected.map(file => ({ phase: 'testing', verb, file, label: 'negative' })));
+    //         }
+    //     }
+    
+    //     // 2.3 Add attention check
+    //     this.testingList.push({
+    //         phase: 'testing',
+    //         verb: 'attention_check',
+    //         file: 'check.mp4',
+    //         label: 'check'
+    //     });
+    
+    //     // Finalize
+    //     this.testingList = shuffle_array(this.testingList);
+    //     this.totalTestingTrials = this.testingList.length;
+    // }
+    
+    
+    // getSubjectData() {
+    //     this.num = this.subj.num;
+    //     this.date = this.subj.date;
+    //     this.subjStartTime = this.subj.startTime;
+    //     this.phase = 'learning';
+    // }
+    
+    // updateTrial() {
+    //     this.trialNum++;
+    
+    //     if (this.nextPhase) {
+    //         this.phase = this.nextPhase;
+    //         this.nextPhase = null;
+    //     }
+    
+    //     let trialList;
+    //     let currentPhase = this.phase;
+    
+    //     if (currentPhase === 'learning') {
+    //         trialList = this.learningList;
+    //     } else if (currentPhase === 'testing') {
+    //         trialList = this.testingList;
+    //     }
+    
+    //     this.thisTrial = trialList.shift();
+    
+    //     const last = trialList.length === 0;
+    
+    //     this.updateFunc(currentPhase, last, this.thisTrial, trialList[0] || null, this.stimPath);
+    
+    //     if (last) {
+    //         this.nextPhase = (currentPhase === 'learning') ? 'testing' : 'done';
+    //     }
+    // }
+
+
+
+
+
+
+    // Class 3 Trials
     buildTrials() {
         const allClasses = Object.keys(EXPERIMENT_VIDEOS);
-        const class2Verbs = Object.keys(EXPERIMENT_VIDEOS.class2);
+        const class3Verbs = Object.keys(EXPERIMENT_VIDEOS.class3);
     
         // 1. Learning Phase: 1 verb from target class, 1 video
-        const learningVerbs = shuffle_array(class2Verbs).slice(0, 1);
+        const learningVerbs = shuffle_array(class3Verbs).slice(0, 1);
         const learningVerb = learningVerbs[0];
-        const vid = shuffle_array(EXPERIMENT_VIDEOS.class2[learningVerb])[0];
+        const vid = shuffle_array(EXPERIMENT_VIDEOS.class3[learningVerb])[0];
         this.usedVideos.add(vid);
         this.learningList.push({ phase: 'learning', verb: learningVerb, file: vid });
         this.totalLearningTrials = 1;
     
         // 2. Testing Phase
-        // 2.1 Positive: 2 verbs from class2, 2 videos each (not used)
-        const remainingPosVerbs = class2Verbs.filter(v => !learningVerbs.includes(v));
+        // 2.1 Positive: 2 verbs from class3, 2 videos each (not used)
+        const remainingPosVerbs = class3Verbs.filter(v => !learningVerbs.includes(v));
         const posTestVerbs = shuffle_array(remainingPosVerbs).slice(0, 2);
         for (let verb of posTestVerbs) {
-            const available = EXPERIMENT_VIDEOS.class2[verb].filter(v => !this.usedVideos.has(v));
+            const available = EXPERIMENT_VIDEOS.class3[verb].filter(v => !this.usedVideos.has(v));
             const selected = shuffle_array(available).slice(0, 2);
             selected.forEach(v => this.usedVideos.add(v));
             this.testingList.push(...selected.map(file => ({ phase: 'testing', verb, file, label: 'positive' })));
         }
     
-        // 2.2 Negative: pick 2 verbs × 2 videos from each of class1, class3, class4
-        for (let className of ['class1', 'class3', 'class4']) {
+        // 2.2 Negative: pick 2 verbs × 2 videos from each of class1, class2, class4
+        for (let className of ['class1', 'class2', 'class4']) {
             const verbs = Object.keys(EXPERIMENT_VIDEOS[className]);
             const selectedVerbs = shuffle_array(verbs).slice(0, 2);
             for (let verb of selectedVerbs) {
@@ -199,96 +289,6 @@ class Task {
             this.nextPhase = (currentPhase === 'learning') ? 'testing' : 'done';
         }
     }
-
-
-
-
-
-
-    // // Class 3 Trials
-    // buildTrials() {
-    //     const allClasses = Object.keys(EXPERIMENT_VIDEOS);
-    //     const class3Verbs = Object.keys(EXPERIMENT_VIDEOS.class3);
-    //
-    //     // 1. Learning Phase: 1 verb from target class, 1 video
-    //     const learningVerbs = shuffle_array(class3Verbs).slice(0, 1);
-    //     const learningVerb = learningVerbs[0];
-    //     const vid = shuffle_array(EXPERIMENT_VIDEOS.class3[learningVerb])[0];
-    //     this.usedVideos.add(vid);
-    //     this.learningList.push({ phase: 'learning', verb: learningVerb, file: vid });
-    //     this.totalLearningTrials = 1;
-    //
-    //     // 2. Testing Phase
-    //     // 2.1 Positive: 2 verbs from class3, 2 videos each (not used)
-    //     const remainingPosVerbs = class3Verbs.filter(v => !learningVerbs.includes(v));
-    //     const posTestVerbs = shuffle_array(remainingPosVerbs).slice(0, 2);
-    //     for (let verb of posTestVerbs) {
-    //         const available = EXPERIMENT_VIDEOS.class3[verb].filter(v => !this.usedVideos.has(v));
-    //         const selected = shuffle_array(available).slice(0, 2);
-    //         selected.forEach(v => this.usedVideos.add(v));
-    //         this.testingList.push(...selected.map(file => ({ phase: 'testing', verb, file, label: 'positive' })));
-    //     }
-    //
-    //     // 2.2 Negative: pick 2 verbs × 2 videos from each of class1, class2, class4
-    //     for (let className of ['class1', 'class2', 'class4']) {
-    //         const verbs = Object.keys(EXPERIMENT_VIDEOS[className]);
-    //         const selectedVerbs = shuffle_array(verbs).slice(0, 2);
-    //         for (let verb of selectedVerbs) {
-    //             const available = EXPERIMENT_VIDEOS[className][verb].filter(v => !this.usedVideos.has(v));
-    //             const selected = shuffle_array(available).slice(0, 2);
-    //             selected.forEach(v => this.usedVideos.add(v));
-    //             this.testingList.push(...selected.map(file => ({ phase: 'testing', verb, file, label: 'negative' })));
-    //         }
-    //     }
-    //
-    //     // 2.3 Add attention check
-    //     this.testingList.push({
-    //         phase: 'testing',
-    //         verb: 'attention_check',
-    //         file: 'check.mp4',
-    //         label: 'check'
-    //     });
-    //
-    //     // Finalize
-    //     this.testingList = shuffle_array(this.testingList);
-    //     this.totalTestingTrials = this.testingList.length;
-    // }
-    //
-    //
-    // getSubjectData() {
-    //     this.num = this.subj.num;
-    //     this.date = this.subj.date;
-    //     this.subjStartTime = this.subj.startTime;
-    //     this.phase = 'learning';
-    // }
-    //
-    // updateTrial() {
-    //     this.trialNum++;
-    //
-    //     if (this.nextPhase) {
-    //         this.phase = this.nextPhase;
-    //         this.nextPhase = null;
-    //     }
-    //
-    //     let trialList;
-    //     let currentPhase = this.phase;
-    //
-    //     if (currentPhase === 'learning') {
-    //         trialList = this.learningList;
-    //     } else if (currentPhase === 'testing') {
-    //         trialList = this.testingList;
-    //     }
-    //
-    //     this.thisTrial = trialList.shift();
-    //
-    //     const last = trialList.length === 0;
-    //
-    //     this.updateFunc(currentPhase, last, this.thisTrial, trialList[0] || null, this.stimPath);
-    //
-    //     if (last) {
-    //         this.nextPhase = (currentPhase === 'learning') ? 'testing' : 'done';
-    //     }
-    // }
 
 
 
